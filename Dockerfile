@@ -1,32 +1,33 @@
-# Build stage
+#build stage
+FROM node:18-alpine AS build
 
-FROM node:18-alpine AS Build
-
-WORKDIR /urs/src/app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-RUN yarn Build
+RUN npm run build
 
-# prod stage
 
-WORKDIR /urs/src/app
+#prod stage
+FROM node:18-alpine
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-COPY --from=Build /urs/src/app/dist ./dist
+WORKDIR /usr/src/app
+
+COPY --from=build /usr/src/app/dist ./dist
 
 COPY package*.json ./
 
-RUN yarn install --only=production
+RUN npm install --only=production
 
 RUN rm package*.json
 
 EXPOSE 3000
 
-CMD ['node', 'dist/main.js']
+CMD [ "node", "dist/main.js" ]
