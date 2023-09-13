@@ -8,6 +8,10 @@ jobs:
       tag: '16.18.0'
     steps:
       - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            yarn install --no-frozen-lockfile
     #   - node/install-packages
     # - run:
     #     command: yarn test
