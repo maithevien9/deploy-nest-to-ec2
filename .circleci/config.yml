@@ -6,11 +6,11 @@ jobs:
     executor:
       name: node/default
       tag: '16.18.0'
-    steps:
-      - checkout
-      - node/install-packages
-      # - run:
-      #     command: yarn test
+    # steps:
+    #   - checkout
+    #   - node/install-packages
+    # - run:
+    #     command: yarn test
 workflows:
   build-and-test:
     jobs:
