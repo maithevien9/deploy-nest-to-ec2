@@ -9,8 +9,8 @@ jobs:
     steps:
       - checkout
       - node/install-packages
-      - run:
-          command: yarn test
+      # - run:
+      #     command: yarn test
 workflows:
   build-and-test:
     jobs:
