@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  backend:
+    build: ./
+    container_name: nestjs_api
+    environment:
+      - PORT=3000
+    ports:
+      - '3000:3000'
+  #   depends_on:
+  #     - database
+
+  # database:
+  #   image: mon
+
+networks:
+  nestjs_network:
+    driver: bridge
